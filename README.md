@@ -1,24 +1,33 @@
-# README
+# PairWithMe (Working Name)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Users
+- can have strong/weak topics
+- can join session as tutor or tutee
+- tutee by default, can be set as tutor by admin
+- tutor can set open tutor times
+- users see all upcoming sessions on their show page
+- tutee can see tutors and pick from times to set up session
+- tutor show page with form to create session
 
-Things you may want to cover:
+### Topics
+- only admins can CUD topics
+- can be either a strong point or weak point for a user
 
-* Ruby version
+### Session
+- belongs to a tutor and tutee
+- has duration, location
 
-* System dependencies
+### Analysis
+- users can see tutors by topic '/tutors/?topic=Battleship'
 
-* Configuration
+### Admins
+- can see a list of all users
+- can delete users
+- can set user roles
+- can CUD topics
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Extensions
+- can see tutors by availability day
+- can see by topic and availability
+- user can rate sessions
+- overall rating for tutor (calculated by session rating)
