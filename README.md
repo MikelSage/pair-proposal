@@ -1,12 +1,12 @@
 # PairProposal (Working Name)
 
 ### Users
-- can have strong/weak topics
-- can join session as tutor or tutee
+- can have strong/weak topics (needs topics)
+- can join session as tutor or tutee (needs sessions)
 - tutee by default, can be set as tutor by admin
-- tutor can set open tutor times
-- users see all upcoming sessions on their show page
-- tutee can see tutors and pick from times to set up session
+- tutor can set open tutor times (need tutor_times)
+- users see all upcoming sessions on their show page (needs sessions)
+- tutee can see tutors and pick from times to set up session (needs times and sessions)
 - tutor show page with form to create session
 
 ### Topics
