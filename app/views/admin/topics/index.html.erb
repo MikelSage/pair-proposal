@@ -1,5 +1,8 @@
 <h1>All Topics</h1>
 
+<%= link_to 'Add New Topic', new_admin_topic_path %>
+<br><br>
+
 <% @topics.each do |topic| %>
-  <p><%= topic.name %></p>
+  <p><%=link_to topic.name, edit_admin_topic_path(topic) %></p>
 <% end %>

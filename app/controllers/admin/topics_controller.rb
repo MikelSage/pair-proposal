@@ -9,8 +9,25 @@ class Admin::TopicsController < Admin::BaseController
 
   def create
     @topic = Topic.new(topic_params)
+    @topic.save
     flash[:notice] = "#{@topic.name} created successfully!"
     redirect_to admin_topics_path
+  end
+
+  def edit
+    @topic = Topic.find(params[:id])
+  end
+
+  def update
+    @topic = Topic.find(params[:id])
+
+    if @topic.update(topic_params)
+      flash[:notice] = "#{@topic.name} updated successfully"
+      redirect_to admin_topics_path
+    else
+      flash[:error] = 'Invalid Topic Name'
+      render :edit
+    end
   end
 
   private
