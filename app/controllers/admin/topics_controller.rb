@@ -22,12 +22,20 @@ class Admin::TopicsController < Admin::BaseController
     @topic = Topic.find(params[:id])
 
     if @topic.update(topic_params)
-      flash[:notice] = "#{@topic.name} updated successfully"
+      flash[:notice] = "#{@topic.name} updated successfully!"
       redirect_to admin_topics_path
     else
       flash[:error] = 'Invalid Topic Name'
       render :edit
     end
+  end
+
+  def destroy
+    @topic = Topic.find(params[:id])
+    @topic.destroy
+
+    flash[:notice] = "#{@topic.name} deleted successfully!"
+    redirect_to admin_topics_path
   end
 
   private
