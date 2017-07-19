@@ -1,4 +1,4 @@
-# PairWithMe (Working Name)
+# PairProposal (Working Name)
 
 ### Users
 - can have strong/weak topics
