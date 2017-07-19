@@ -2,23 +2,12 @@ require 'rails_helper'
 
 RSpec.feature 'User edits their information' do
   scenario 'and sees the updated information' do
-    user_params = {
-      name: 'Dat Boi',
-      username: 'herecomes21',
-      password: 'password',
-      bio: 'Oh shiit waddup?'
-    }
+    user = create(:user)
 
-    user = User.create(user_params)
+    allow_any_instance_of(ApplicationController).to receive(:current_user).
+    and_return(user)
 
-    visit login_path
-    fill_in "session[username]", with: user.username
-    fill_in "session[password]", with: user_params[:password]
-    click_button 'Login'
-
-    expect(page).to have_content user.name
-    expect(page).to have_content user.username
-    expect(page).to have_content user.bio
+    visit user_path(user)
 
     click_on 'Edit Info'
 

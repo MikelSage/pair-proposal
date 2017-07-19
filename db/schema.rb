@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20170718230042) do
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "password_digest"
-    t.string "role", default: "tutee"
+    t.integer "role", default: 0
     t.string "name"
     t.text "bio", default: "Tell us about yourself!"
     t.datetime "created_at", null: false
