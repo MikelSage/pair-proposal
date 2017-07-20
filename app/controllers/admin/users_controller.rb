@@ -22,7 +22,7 @@ class Admin::UsersController < Admin::BaseController
     @user = User.find(params[:id])
     @user.destroy
 
-    flash[:notice] = "#{@user.name} sucessfully destroyed"
+    flash[:success] = "#{@user.name} sucessfully destroyed"
     redirect_to admin_users_path
   end
 

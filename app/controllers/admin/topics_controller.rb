@@ -10,7 +10,7 @@ class Admin::TopicsController < Admin::BaseController
   def create
     @topic = Topic.new(topic_params)
     @topic.save
-    flash[:notice] = "#{@topic.name} created successfully!"
+    flash[:success] = "#{@topic.name} created successfully!"
     redirect_to admin_topics_path
   end
 
@@ -22,10 +22,10 @@ class Admin::TopicsController < Admin::BaseController
     @topic = Topic.find(params[:id])
 
     if @topic.update(topic_params)
-      flash[:notice] = "#{@topic.name} updated successfully!"
+      flash[:success] = "#{@topic.name} updated successfully!"
       redirect_to admin_topics_path
     else
-      flash[:error] = 'Invalid Topic Name'
+      flash[:danger] = 'Invalid Topic Name'
       render :edit
     end
   end
@@ -34,7 +34,7 @@ class Admin::TopicsController < Admin::BaseController
     @topic = Topic.find(params[:id])
     @topic.destroy
 
-    flash[:notice] = "#{@topic.name} deleted successfully!"
+    flash[:success] = "#{@topic.name} deleted successfully!"
     redirect_to admin_topics_path
   end
 
