@@ -7,5 +7,7 @@
   <%= f.label :bio %>
   <%= f.text_area :bio %>
 
+  <%= collection_check_boxes(:user, :topic_ids, Topic.all, :id, :name) %>
+
   <%= f.submit 'Submit Changes' %>
 <% end %>

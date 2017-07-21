@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   end
 
   def show
-
+    @user = User.find(params[:id])
   end
 
   def edit
@@ -22,6 +22,14 @@ class UsersController < ApplicationController
 
   def update
     current_user.update(user_params)
+    
+    if params[:user][:topic_ids].length > 1
+      current_user.topics.clear
+      topics = Topic.find(topic_ids)
+      current_user.topics << topics
+    elsif params[:user][:topic_ids]
+      current_user.topics.clear
+    end
 
     redirect_to user_path(current_user)
   end
@@ -30,5 +38,9 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :bio, :username, :password)
+  end
+
+  def topic_ids
+    params[:user][:topic_ids].delete_if(&:empty?)
   end
 end

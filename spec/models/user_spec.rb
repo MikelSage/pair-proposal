@@ -5,6 +5,8 @@ RSpec.describe User, type: :model do
     it {is_expected.to validate_presence_of(:name)}
     it {is_expected.to validate_presence_of(:username)}
     it {is_expected.to validate_uniqueness_of(:username)}
+    it {is_expected.to have_many(:user_topics)}
+    it {is_expected.to have_many(:topics).through(:user_topics)}
   end
 
   describe 'creation' do
