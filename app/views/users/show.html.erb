@@ -1,9 +1,11 @@
 <div class="row">
   <h1>Welcome, <%= @user.username %></h1>
-  <%= @user.name %>
-  <%= @user.bio %>
+  <p><%= @user.name %></p>
+  <p><%= @user.bio %></p>
 
-  <%= link_to 'Edit Info', edit_user_path(@user) %>
+  <% if current_user == @user %>
+    <%= link_to 'Edit Info', edit_user_path(@user) %>
+  <% end %>
   <div class="strong-topics">
     <h3>Strong Topics</h3>
     <% @user.topics.each do |topic| %>
