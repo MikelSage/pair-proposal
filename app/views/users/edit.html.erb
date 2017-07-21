@@ -9,14 +9,17 @@
       <%= f.text_area :bio %>
     </div>
 
-    <div class="row">
-      <%= collection_check_boxes(:user, :topic_ids, Topic.all, :id, :name) do |o| %>
-        <div style="width: 300px; height:50px; display: inline-block;">
-          <%= o.check_box %>
-          <%= o.label(style: 'margin-left: 5px;') %>
-        </div>
-      <% end %>
-    </div>
+    <% if @user.tutor? || @user.admin?%>
+      <div class="row">
+        <h3>Select Your Strong Topics</h3>
+        <%= collection_check_boxes(:user, :topic_ids, Topic.all, :id, :name) do |o| %>
+          <div style="width: 300px; height:50px; display: inline-block;">
+            <%= o.check_box %>
+            <%= o.label(style: 'margin-left: 5px;') %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
 
     <%= f.submit 'Submit Changes' %>
   <% end %>
