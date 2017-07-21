@@ -1,10 +1,13 @@
-<h1>Welcome, <%= @user.username %></h1>
-<%= @user.bio %>
+<div class="row">
+  <h1>Welcome, <%= @user.username %></h1>
+  <%= @user.name %>
+  <%= @user.bio %>
 
-<%= link_to 'Edit Info', edit_user_path(@user) %>
-<div class="strong-topics">
-  <h3>Strong Topics</h3>
-  <% current_user.topics.each do |topic| %>
-    <p><%= topic.name %></p>
-  <% end %>
+  <%= link_to 'Edit Info', edit_user_path(@user) %>
+  <div class="strong-topics">
+    <h3>Strong Topics</h3>
+    <% @user.topics.each do |topic| %>
+      <p><%= topic.name %></p>
+    <% end %>
+  </div>
 </div>

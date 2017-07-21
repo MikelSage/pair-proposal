@@ -17,21 +17,22 @@ class UsersController < ApplicationController
   end
 
   def edit
-
+    @user = User.find(params[:id])
   end
 
   def update
-    current_user.update(user_params)
-    
+    @user = User.find(params[:id])
+    @user.update(user_params)
+
     if params[:user][:topic_ids].length > 1
-      current_user.topics.clear
+      @user.topics.clear
       topics = Topic.find(topic_ids)
-      current_user.topics << topics
+      @user.topics << topics
     elsif params[:user][:topic_ids]
-      current_user.topics.clear
+      @user.topics.clear
     end
 
-    redirect_to user_path(current_user)
+    redirect_to user_path(@user)
   end
 
   private
