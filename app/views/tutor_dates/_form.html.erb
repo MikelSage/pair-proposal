@@ -1,0 +1,13 @@
+<h3>Enter a time that you're free:</h3>
+
+<%= form_for [@user, @tutor_date]  do |f|%>
+  <%= f.label :date %>
+  <%= f.datetime_local_field :date %>
+
+  <%= fields_for :arrangements do |af| %>
+    <%= af.label :duration %>
+    <%= af.number_field :duration %>
+  <% end %>
+
+  <%= f.submit 'Submit'%>
+<% end %>
