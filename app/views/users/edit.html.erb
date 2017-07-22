@@ -10,17 +10,14 @@
       <%= f.text_area :bio, class: "form-control" %>
     </div>
 
-
-    <% if @user.tutor? || @user.admin?%>
-      <div class="row">
-        <h3>Select Your Strong Topics</h3>
-        <%= collection_check_boxes(:user, :topic_ids, Topic.all, :id, :name) do |o| %>
-          <div class="checkbox" style="height: 10%; width: 33%; display: inline-block;">
-            <%= o.label {o.check_box(type: 'checkbox') + o.text} %>
-          </div>
-        <% end %>
-      </div>
-    <% end %>
+    <div class="row">
+      <h3>Select Your Strong Topics</h3>
+      <%= collection_check_boxes(:user, :topic_ids, Topic.all, :id, :name) do |o| %>
+        <div class="checkbox" style="height: 10%; width: 33%; display: inline-block;">
+          <%= o.label {o.check_box(type: 'checkbox') + o.text} %>
+        </div>
+      <% end %>
+    </div>
 
     <%= f.submit 'Submit Changes' %>
   <% end %>

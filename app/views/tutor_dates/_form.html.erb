@@ -4,10 +4,8 @@
   <%= f.label :date %>
   <%= f.datetime_local_field :date %>
 
-  <%= fields_for :arrangements do |af| %>
-    <%= af.label :duration %>
-    <%= af.number_field :duration %>
-  <% end %>
+  <%= f.label :duration %>
+  <%= f.number_field :duration %>
 
   <%= f.submit 'Submit'%>
 <% end %>

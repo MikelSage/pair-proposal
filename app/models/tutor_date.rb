@@ -1,7 +1,8 @@
 class TutorDate < ApplicationRecord
-  has_many :arrangements
-  has_many :users, through: :arrangements
-  accepts_nested_attributes_for :arrangements
+  belongs_to :user
+  validates :date, presence:true
 
-  #time.strftime('%b-%d-%Y at %I:%M')
+  def formatted_date
+    date.strftime('%b %d, %Y at %l:%M')
+  end
 end
