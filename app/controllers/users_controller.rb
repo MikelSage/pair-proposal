@@ -24,21 +24,13 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.update(user_params)
 
-    if params[:user][:topic_ids].length > 1
-      @user.topics.clear
-      topics = Topic.find(topic_ids)
-      @user.topics << topics
-    elsif params[:user][:topic_ids]
-      @user.topics.clear
-    end
-
     redirect_to user_path(@user)
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:name, :bio, :username, :password)
+    params.require(:user).permit(:name, :bio, :username, :password, topic_ids: [])
   end
 
   def topic_ids
