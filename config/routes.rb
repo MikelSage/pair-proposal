@@ -1,13 +1,14 @@
 Rails.application.routes.draw do
   root 'welcome#index'
 
-  resources :users, only: [:new, :create, :show, :edit, :update] do
+  resources :users, except: [:index, :destroy] do
     resources :tutor_dates, only: [:create]
+    resources :pairings, only: [:create]
   end
 
   namespace :admin do
     resources :topics
-    resources :users, only: [:index, :edit, :update, :show, :destroy]
+    resources :users, except: [:create, :new]
   end
 
   get '/login', to: 'sessions#new'

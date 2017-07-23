@@ -8,6 +8,7 @@ RSpec.describe User, type: :model do
     it {is_expected.to have_many(:user_topics)}
     it {is_expected.to have_many(:topics).through(:user_topics)}
     it {is_expected.to have_many(:tutor_dates)}
+    it {is_expected.to have_many(:pairings)}
   end
 
   describe 'creation' do

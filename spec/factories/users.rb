@@ -17,5 +17,15 @@ FactoryGirl.define do
     factory :admin do
       role 2
     end
+
+    trait :with_dates do
+      transient do
+        date_count 2
+      end
+
+      after(:create) do |user, evaluator|
+        user.tutor_dates << create_list(:tutor_date, evaluator.date_count)
+      end
+    end
   end
 end

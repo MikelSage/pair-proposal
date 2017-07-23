@@ -1,0 +1,11 @@
+<h3>Set Up a Pairing Session:</h3>
+
+<%= form_for [@user, @pairing] do |f| %>
+  <%= f.label :topic%>
+  <%= f.collection_select(:topic_id, @user.topics, :id, :name) %>
+
+  <%= f.label :date %>
+  <%= f.collection_select(:tutor_date_id, @user.tutor_dates, :id, :formatted_date) %>
+
+  <%= f.submit 'Book Pairing'%>
+<% end %>

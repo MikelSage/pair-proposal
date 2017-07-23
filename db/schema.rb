@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170722222209) do
+ActiveRecord::Schema.define(version: 20170723015050) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "pairings", force: :cascade do |t|
+    t.bigint "topic_id"
+    t.bigint "tutor_date_id"
+    t.integer "pupil_id"
+    t.integer "tutor_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["topic_id"], name: "index_pairings_on_topic_id"
+    t.index ["tutor_date_id"], name: "index_pairings_on_tutor_date_id"
+  end
 
   create_table "topics", force: :cascade do |t|
     t.string "name"
@@ -49,6 +60,8 @@ ActiveRecord::Schema.define(version: 20170722222209) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "pairings", "topics"
+  add_foreign_key "pairings", "tutor_dates"
   add_foreign_key "tutor_dates", "users"
   add_foreign_key "user_topics", "topics"
   add_foreign_key "user_topics", "users"

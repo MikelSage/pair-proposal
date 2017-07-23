@@ -1,15 +1,28 @@
 <div class="row">
-  <h1>Welcome, <%= @user.username %></h1>
+  <% if current_user == @user %>
+    <h1>Welcome, <%= @user.username %></h1>
+    <%= link_to 'Edit Info', edit_user_path(@user) %>
+  <% else %>
+    <h1><%= "Welcome to #{@user.username}'s page!" %></h1>
+  <% end %>
   <p><%= @user.name %></p>
   <p><%= @user.bio %></p>
 
-  <% if current_user == @user %>
-    <%= link_to 'Edit Info', edit_user_path(@user) %>
+  <% if @user.topics.present?%>
+    <div class="strong-topics">
+      <h3>Strong Topics</h3>
+      <% @user.topics.each do |topic| %>
+        <p><%= topic.name %></p>
+      <% end %>
+    </div>
   <% end %>
-  <div class="strong-topics">
-    <h3>Strong Topics</h3>
-    <% @user.topics.each do |topic| %>
-      <p><%= topic.name %></p>
-    <% end %>
-  </div>
 </div>
+
+<% if not_current_user %>
+  <%= render partial: 'pairings/form' %>
+<% end %>
+
+<% if @user.pairings.present? %>
+  <h3>Upcoming Pairings</h3>
+  <%= render partial: 'users/pairing', collection: @user.pairings %>
+<% end %>
