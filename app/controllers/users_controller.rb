@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :require_pupil_to_tutor, only: [:show]
   def new
     @user = User.new
   end
