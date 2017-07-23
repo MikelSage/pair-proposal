@@ -23,6 +23,8 @@
   <% end %>
 </div>
 
-<h3>Open dates: </h3>
-<%= render partial: 'users/date', collection: @user.tutor_dates %>
-<%= render partial: 'tutor_dates/form' %>
+<% unless current_pupil %>
+  <h3>Open dates: </h3>
+  <%= render partial: 'users/date', collection: @user.open_dates %>
+  <%= render partial: 'tutor_dates/form' %>
+<% end %>

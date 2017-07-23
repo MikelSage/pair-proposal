@@ -33,4 +33,21 @@ RSpec.describe User, type: :model do
       expect(user.admin?).to be_truthy
     end
   end
+
+  describe 'instance methods' do
+    describe '#open_dates'do
+      it "should return only dates with no pairing" do
+        tutor = create(:tutor, :with_dates, date_count: 3)
+        user = create(:user)
+        topic = create(:topic)
+        pairing = create(:pairing, pupil_id: user.id, tutor_id: tutor.id,
+                         topic_id: topic.id, tutor_date_id: tutor.tutor_dates.last.id)
+
+        result = tutor.open_dates
+
+        expect(result).to include(tutor.tutor_dates.first)
+        expect(result).to_not include(tutor.tutor_dates.last)
+      end
+    end
+  end
 end

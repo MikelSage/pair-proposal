@@ -9,4 +9,9 @@ class User < ApplicationRecord
   has_many :pairings, class_name: 'Pairing', foreign_key: 'pupil_id'
 
   enum role: ['pupil', 'tutor', 'admin']
+
+  def open_dates
+    self.tutor_dates.left_outer_joins(:pairings).
+         where(pairings: {tutor_date_id: nil})
+  end
 end
