@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :require_pupil_to_tutor, only: [:show]
+  before_action :require_pupil_to_tutor, only: [:show, :edit]
+  before_action :require_current_user, only: [:show, :edit]
   def new
     @user = User.new
   end
@@ -34,9 +35,5 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :bio, :username, :password, topic_ids: [])
-  end
-
-  def topic_ids
-    params[:user][:topic_ids].delete_if(&:empty?)
   end
 end
