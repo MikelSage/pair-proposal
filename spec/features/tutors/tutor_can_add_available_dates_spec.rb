@@ -14,8 +14,6 @@ RSpec.feature 'Tutor visits edit page' do
     fill_in 'Duration', with: duration
     click_on 'Submit'
 
-    visit user_path(tutor)
-
     expect(page).to have_content 'Jul 22, 2017 at 6:30'
     expect(page).to have_content duration
   end
