@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   resources :users, except: [:index, :destroy] do
-    resources :tutor_dates, only: [:create]
+    resources :tutor_dates, only: [:create, :destroy]
     resources :pairings, only: [:create]
   end
 

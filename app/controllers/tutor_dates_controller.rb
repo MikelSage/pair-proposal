@@ -9,6 +9,16 @@ class TutorDatesController < ApplicationController
     redirect_to edit_user_path(@tutor_date.user)
   end
 
+  def destroy
+    @tutor_date = TutorDate.find(params[:id])
+    @user = @tutor_date.user
+    @tutor_date.destroy
+
+    flash[:success] = 'Date deleted successfully'
+
+    redirect_to edit_user_path(@user)
+  end
+
   private
   def date_params
     params.require(:tutor_date).permit(:date, :duration)

@@ -1,3 +1,6 @@
 <div>
-  <p><%= "#{date.formatted_date} for #{date.duration} minutes" %></p>
+  <p>
+    <%= "#{date.formatted_date} for #{date.duration} minutes" %>
+    <%= link_to 'Delete Date', user_tutor_date_path(date.user, date), method: :delete%>
+  </p>
 </div>
