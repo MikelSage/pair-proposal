@@ -1,4 +1,5 @@
 class Admin::TopicsController < Admin::BaseController
+  before_action :find_topic, only: [:edit, :update, :destroy]
   def index
     @topics = Topic.all
   end
@@ -15,12 +16,10 @@ class Admin::TopicsController < Admin::BaseController
   end
 
   def edit
-    @topic = Topic.find(params[:id])
+    
   end
 
   def update
-    @topic = Topic.find(params[:id])
-
     if @topic.update(topic_params)
       flash[:success] = "#{@topic.name} updated successfully!"
       redirect_to admin_topics_path
@@ -31,7 +30,6 @@ class Admin::TopicsController < Admin::BaseController
   end
 
   def destroy
-    @topic = Topic.find(params[:id])
     @topic.destroy
 
     flash[:success] = "#{@topic.name} deleted successfully!"
@@ -42,5 +40,9 @@ class Admin::TopicsController < Admin::BaseController
 
   def topic_params
     params.require(:topic).permit(:name)
+  end
+
+  def find_topic
+    @topic = Topic.find(params[:id])
   end
 end

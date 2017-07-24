@@ -39,4 +39,8 @@ class ApplicationController < ActionController::Base
   def require_current_user
     render file: 'public/404' if not_current_user
   end
+
+  def find_user
+    @user = User.find(params[:id])
+  end
 end

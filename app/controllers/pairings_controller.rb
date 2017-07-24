@@ -3,10 +3,13 @@ class PairingsController < ApplicationController
     @pairing = Pairing.new(pairing_params)
     @pairing.pupil_id = current_user.id
     @pairing.tutor_id = params[:user_id]
-    @pairing.save
+    if @pairing.save
+      flash[:success] = 'Pairing booked successfully'
+      redirect_to user_path(@pairing.tutor)
+    else
+      flash[:danger] = 'Invalid entry, try again'
+    end
 
-    flash[:success] = 'Pairing booked successfully'
-    redirect_to user_path(@pairing.tutor)
   end
 
   private

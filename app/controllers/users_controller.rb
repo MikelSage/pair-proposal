@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :require_pupil_to_tutor, only: [:show, :edit]
   before_action :require_current_user, only:  [:edit]
+  before_action :find_user, only: [:show, :edit, :update]
   def new
     @user = User.new
   end
@@ -15,17 +16,14 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
     @pairing = Pairing.new
   end
 
   def edit
-    @user = User.find(params[:id])
     @tutor_date = TutorDate.new
   end
 
   def update
-    @user = User.find(params[:id])
     @user.update(user_params)
 
     redirect_to user_path(@user)
