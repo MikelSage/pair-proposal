@@ -1,11 +1,15 @@
 <h3>Set Up a Pairing Session:</h3>
 
-<%= form_for [@user, @pairing] do |f| %>
-  <%= f.label :topic%>
-  <%= f.collection_select(:topic_id, @user.topics, :id, :name) %>
+<%= form_for([@user, @pairing], html: {class: 'form-inline'}) do |f| %>
+  <div class="form-group">
+    <%= f.label :topic%>
+    <%= f.collection_select(:topic_id, @user.topics, :id, :name,  class: 'form-control') %>
+  </div>
 
-  <%= f.label :date %>
-  <%= f.collection_select(:tutor_date_id, @user.open_dates, :id, :formatted_date) %>
+  <div class="form-group">
+    <%= f.label :date %>
+    <%= f.collection_select(:tutor_date_id, @user.open_dates, :id, :formatted_date, class: 'form-control') %>
+  </div>
 
-  <%= f.submit 'Book Pairing'%>
+  <%= f.submit 'Book Pairing', class: 'btn btn-default'%>
 <% end %>

@@ -1,11 +1,15 @@
 <h3>Enter a time that you're free:</h3>
 
-<%= form_for [@user, @tutor_date]  do |f|%>
-  <%= f.label :date %>
-  <%= f.datetime_local_field :date %>
+<%= form_for [@user, @tutor_date], html: {class: 'form-inline'}  do |f|%>
+  <div class="form-group">
+    <%= f.label :date %>
+    <%= f.datetime_local_field :date, class: 'form-control' %>
+  </div>
 
-  <%= f.label :duration %>
-  <%= f.number_field :duration %>
+  <div class="form-group">
+    <%= f.label :duration %>
+    <%= f.number_field :duration, class: 'form-control' %>
+  </div>
 
-  <%= f.submit 'Submit'%>
+  <%= f.submit 'Submit', class: 'btn btn-default'%>
 <% end %>
