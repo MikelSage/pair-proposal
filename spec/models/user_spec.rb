@@ -50,4 +50,23 @@ RSpec.describe User, type: :model do
       end
     end
   end
+
+  describe 'class methods' do
+    describe '.tutors_by_topic' do
+      it "should return tutors strong in a topic" do
+        tutor = create(:tutor)
+        tutor.topics << create_list(:topic, 3)
+        tutor2 = create(:tutor)
+        tutor2.topics << tutor.topics.last
+        tutor3 = create(:tutor)
+        tutor3.topics << create(:topic)
+
+        result = User.tutors_by_topic(tutor.topics.last.id)
+
+        expect(result).to include(tutor)
+        expect(result).to include(tutor2)
+        expect(result).to_not include(tutor3)
+      end
+    end
+  end
 end

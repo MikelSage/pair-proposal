@@ -1,0 +1,18 @@
+<h1>Find a Pair!</h1>
+
+<%= form_for :tutor, method: :get do |f| %>
+  <%= f.label :'Select a topic:' %>
+  <%= f.collection_select(:topic_id, Topic.all, :id, :name) %>
+
+  <%= f.submit 'Find Tutors'%>
+<% end %>
+
+<% if @tutors.present? %>
+  <h3><%= "Tutors strong in #{@topic.name}" %></h3>
+  <% @tutors.each do |tutor| %>
+    <p>
+      <%= tutor.name %>
+      <%= link_to 'Book a session', user_path(tutor)%>
+    </p>
+  <% end %>
+<% end %>
